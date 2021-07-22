@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- METADATA FOR PWA -->
+		<!-- ALLOWS TO MODIFY TOP COLOR FOR ANDROID-->
+		<meta name="theme-color" content="#000" />
+		<meta name="MobileOptimized" content="width" />
+		<meta name="HandheldFriendly" content="true" />
+
+		<!-- ALLOWS TO MODIFY TOP COLOR FOR IOS-->
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta
+			name="apple-mobile-web-app-status-bar-style"
+			content="black-translucent"
+		/>
+
+		<title>Forms</title>
+
+		<!-- SETTING UP THE FAVICON AND THE ICON FOR SPLASH SCREEN-->
+		<link rel="shortcut icon" href="./img/favicon.png" type="image/png" />
+		<link rel="apple-touch-icon" href="./img/favicon.png" />
+		<link rel="apple-touch-startup-image" href="./img/favicon.png" />
+
+		<!-- MANIFEST REFERENCE-->
+		<link rel="manifest" href="./manifest.json" />
+
+		<link rel="stylesheet" href="./css/normalize.css" />
+		<link rel="stylesheet" href="./css/helperClasses.css" />
+		<link rel="stylesheet" href="./css/styles.css" />
+		<script src="https://unpkg.com/vue@next" defer></script>
+		<script src="./js/app.js" defer></script>
+		<script src="./js/load.js" defer></script>
+	</head>
+	<body>
+		<div id="app" class="container">
+			<h2>{{title}}</h2>
+			
+			<form class="calculator">
+				<div class="display">
+					<div class="current-operation">
+						<span v-for="(operate, index) in history" :key="index">{{operate}}</span>
+					</div>
+					<div class="result">
+						<p>{{result}}</p>
+					</div>
+				</div>
+				<div class="keyboard">
+					<div class="digits">
+						<div class="key" @click="setCipher(7)"><p class="char">7</p></div>
+						<div class="key" @click="setCipher(8)"><p class="char">8</p></div>
+						<div class="key" @click="setCipher(9)"><p class="char">9</p></div>
+						<div class="key" @click="setCipher(4)"><p class="char">4</p></div>
+						<div class="key" @click="setCipher(5)"><p class="char">5</p></div>
+						<div class="key" @click="setCipher(6)"><p class="char">6</p></div>
+						<div class="key" @click="setCipher(1)"><p class="char">1</p></div>
+						<div class="key" @click="setCipher(2)"><p class="char">2</p></div>
+						<div class="key" @click="setCipher(3)"><p class="char">3</p></div>
+						<div class="key" @click="setCipher(0)"><p class="char">0</p></div>
+						<div class="key long-key" @click="setCipher('\.')"><p class="char">.</p></div>
+					</div>
+					<div class="operations">
+						<div class="key long-key" @click="clear"><p class="char">Clear</p></div>
+						<div class="key" @click="setOperation('*')"><p class="char">X</p></div>
+						<div class="key" @click="setOperation('\/')"><p class="char">/</p></div>
+						<div class="key" @click="setOperation('+')"><p class="char">+</p></div>
+						<div class="key" @click="setOperation('-')"><p class="char">-</p></div>
+						<div class="key long-key" @click="makeOperation"><p class="char">=</p></div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
