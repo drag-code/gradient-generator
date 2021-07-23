@@ -1,17 +1,22 @@
-const CACHE_NAME = "v1_cache_vue_counter";
+const CACHE_NAME = "v1_cache_vue_gradient_generator";
 const cachedUrls = [
 	"./",
+	"./pages/fallback.html",
+	"./pages/css/styles.css",
+	"./?umt_source=web_app_manifest",
 	"./img/favicon.png",
-	"./img/chart_number_icon_32.png",
-	"./img/chart_number_icon_64.png",
-	"./img/chart_number_icon_128.png",
-	"./img/chart_number_icon_256.png",
-	"./img/chart_number_icon_512.png",
-	"./img/chart_number_icon_1024.png",
+	"./img/gradient_32.png",
+	"./img/gradient_64.png",
+	"./img/gradient_128.png",
+	"./img/maskable_icon.png",
+	"./img/gradient_256.png",
+	"./img/gradient_512.png",
+	"./img/gradient_1024.png",
 	"./js/app.js",
 	"./css/styles.css",
 	"https://unpkg.com/vue@next",
-	"./css/normalize.css",
+	"./manifest.json",
+	"https://fonts.googleapis.com/css2?family=Roboto&display=swap"
 ];
 
 const installServiceWorker = () => {
@@ -56,7 +61,7 @@ const fetchServiceWorker = () => {
 					if (res) return res;
 					return fetch(event.request);
 				})
-				.catch((error) => console.log(error))
+				.catch(() => caches.match("./pages/fallback.html"))
 		);
 	});
 };
